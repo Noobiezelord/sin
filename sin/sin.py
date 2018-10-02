@@ -5,7 +5,7 @@ def sin1(x):
     # A FAIRE: remplacer ce "return x" par le vrai calcul du sinus.
     
     sinx = 0
-    for indice in range(0,15):
+    for indice in range(13,-1,-1):
 
         factorielle = 1
 
@@ -21,7 +21,7 @@ def cos1(y):
     # A FAIRE: remplacer ce "return x" par le calcul du cosinus par son développement de Taylor.
     
     cosy = 0
-    for indice in range(0,15):
+    for indice in range(13,-1,-1):
 
         factorielle = 1
 
@@ -36,12 +36,14 @@ def cos1(y):
 def sin2(x):
     # On se ramène à un calcul avec x positif ou nul:
     signe = 1
+
     if x < 0:
         x = -x
         signe = -signe
-    # A FAIRE: normaliser et appeler sin1(x) avec x dans [0, pi/2]
 
-    
+    # A FAIRE: normaliser et appeler sin1(x) avec x dans [0, pi/2
+
+    x = pi - x % (pi*2)
     
     return signe * sin1(x)
 
@@ -53,7 +55,11 @@ def sin3(x):
         x = -x
         signe = -signe
     # A FAIRE: normaliser x dans [0, pi/2]
+    
+    x = x % (pi*2)
+    
     y = pi/2 - x
+    
     return signe * cos1(y)
 
 def sin4(x):
@@ -63,9 +69,11 @@ def sin4(x):
         x = -x
         signe = -signe
     # A FAIRE: normaliser x dans [0, pi/2]
+    x = x % (2*pi)
     # A FAIRE: selon la valeur pivot optimale (trouvée en comparant sin2 et sin3), utiliser sin1(x) ou cos1(y)
-    if x < pi/4: # la valeur de pi/4 est à remplacer par celle (approximative) trouvée
-        return signe * sin1(x)
+    
+    if x > pi*3/4: # la valeur de pi/4 est à remplacer par celle (approximative) trouvée
+        return signe * sin1(pi-x)
     else:
         y = pi/2 - x
         return signe * cos1(y)
